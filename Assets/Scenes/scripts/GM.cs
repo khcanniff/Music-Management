@@ -14,10 +14,10 @@ public class GM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetMouseButtonDown(0))
         {
-            print("space key was pressed");
-            audio.M1Play();
+            print("mouse pressed");
+            audio.playSounds();
         }
     }
 }

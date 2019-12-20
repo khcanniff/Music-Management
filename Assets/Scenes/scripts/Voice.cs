@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioClass : MonoBehaviour
+public class Voice : MonoBehaviour
 {
     [SerializeField]
     private AudioClip[] tracks;
+    [SerializeField]
+    private float delay;
 
     // the below AudioSource is used for managing their own tracks. so for example, M1 should handle playing of the M1 tracks etc
     private AudioSource audio;
-
 
     int Counter = 0;
  
@@ -35,10 +36,14 @@ public class AudioClass : MonoBehaviour
 
     public void playNextSound()
     {
-        if (!checkIfAudioIsPlaying() && Counter < tracks.Length)
+        //print("Outside " + Counter + " " + name); line used for testing
+        if ( (Counter) < tracks.Length)
         {
-            audio.clip = tracks[Counter];
+            audio.Stop();
+            //print("I am in " + name + " " + Counter); line used for testing
+            audio.PlayDelayed(delay);
             Counter++;
+
         }
     }
 

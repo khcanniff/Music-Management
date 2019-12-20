@@ -2,29 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioClass))]
+[RequireComponent(typeof(Voice))]
 public class AudioManagement : MonoBehaviour
 {
-    private AudioClass M1;
-    private AudioClass M2;
-    private AudioClass M3;
+    // there should be an audio class for each voice
+    private Voice[] voices; 
 
+    private AudioSource audio;
 
     // Start is called before the first frame update
     void Start()
     {
-        M1 = this.GetComponent<AudioClass>();
-        M1.Setup();
+        voices = this.GetComponents<Voice>();
+        foreach (Voice voice in voices)
+        {
+            voice.Setup();
+        }
+
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() 
     {
         
     }
 
-    public void M1Play()
+    public void playSounds()
     {
-        M1.playNextSound();
+        foreach (Voice voice in voices)
+        {
+            voice.playNextSound();
+            
+        }
     }
 }
